@@ -42,7 +42,7 @@ if uploaded_file:
         st.plotly_chart(fig2, use_container_width=True)
 
     with col2:
-        st.subheader("🌍 Outstanding (Dr-Cr) by Zone/Intercompany")
+        st.subheader("🌍 Outstanding (Dr-Cr) by Zone")
         grouped3 = filtered_df.groupby('Zone/Intercompany')[['DrTotal', 'CrTotal']].sum().reset_index()
         grouped3['Outstanding (Dr-Cr)'] = grouped3['DrTotal'] - grouped3['CrTotal']
         fig3 = px.pie(grouped3, values='Outstanding (Dr-Cr)', names='Zone/Intercompany', title="By Zone/Intercompany")
