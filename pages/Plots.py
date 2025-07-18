@@ -11,7 +11,7 @@ if uploaded_file:
     df = pd.read_excel(uploaded_file)
     st.sidebar.header("Filter Options")
     
-    zones = st.sidebar.multiselect("Select Zone", df["Zone/Segment"].unique())
+    zones = st.sidebar.multiselect("Select Zone", df["Zone/Intercompany"].unique())
     verticals = st.sidebar.multiselect("Select Business Vertical", df["Business Vertical"].unique())
     
     filtered_df = df.copy()
