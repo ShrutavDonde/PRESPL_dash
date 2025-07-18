@@ -29,25 +29,29 @@ if uploaded_file:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("💼 DrTotal by Business Vertical")
-        pie1_data = filtered_df.groupby('Business Vertical')['DrTotal'].sum().reset_index()
-        fig1 = px.pie(pie1_data, values='DrTotal', names='Business Vertical', title="By Business Vertical")
+        st.subheader("💼 Outstanding (Dr-Cr) by Business Vertical")
+        grouped1 = filtered_df.groupby('Business Vertical')[['DrTotal', 'CrTotal']].sum().reset_index()
+        grouped1['Outstanding (Dr-Cr)'] = grouped1['DrTotal'] - grouped1['CrTotal']
+        fig1 = px.pie(grouped1, values='Outstanding (Dr-Cr)', names='Business Vertical', title="By Business Vertical")
         st.plotly_chart(fig1, use_container_width=True)
 
-        st.subheader("📍 DrTotal by Location")
-        pie3_data = filtered_df.groupby('Location')['DrTotal'].sum().reset_index()
-        fig3 = px.pie(pie3_data, values='DrTotal', names='Location', title="By Location")
-        st.plotly_chart(fig3, use_container_width=True)
-
-    with col2:
-        st.subheader("🌍 DrTotal by Zone/Intercompany")
-        pie2_data = filtered_df.groupby('Zone/Intercompany')['DrTotal'].sum().reset_index()
-        fig2 = px.pie(pie2_data, values='DrTotal', names='Zone/Intercompany', title="By Zone/Intercompany")
+        st.subheader("📍 Outstanding (Dr-Cr) by Location")
+        grouped2 = filtered_df.groupby('Location')[['DrTotal', 'CrTotal']].sum().reset_index()
+        grouped2['Outstanding (Dr-Cr)'] = grouped2['DrTotal'] - grouped2['CrTotal']
+        fig2 = px.pie(grouped2, values='Outstanding (Dr-Cr)', names='Location', title="By Location")
         st.plotly_chart(fig2, use_container_width=True)
 
-        st.subheader("⭐ DrTotal by Rating")
-        pie4_data = filtered_df.groupby('Rating')['DrTotal'].sum().reset_index()
-        fig4 = px.pie(pie4_data, values='DrTotal', names='Rating', title="By Rating")
+    with col2:
+        st.subheader("🌍 Outstanding (Dr-Cr) by Zone/Intercompany")
+        grouped3 = filtered_df.groupby('Zone/Intercompany')[['DrTotal', 'CrTotal']].sum().reset_index()
+        grouped3['Outstanding (Dr-Cr)'] = grouped3['DrTotal'] - grouped3['CrTotal']
+        fig3 = px.pie(grouped3, values='Outstanding (Dr-Cr)', names='Zone/Intercompany', title="By Zone/Intercompany")
+        st.plotly_chart(fig3, use_container_width=True)
+
+        st.subheader("⭐ Outstanding (Dr-Cr) by Rating")
+        grouped4 = filtered_df.groupby('Rating')[['DrTotal', 'CrTotal']].sum().reset_index()
+        grouped4['Outstanding (Dr-Cr)'] = grouped4['DrTotal'] - grouped4['CrTotal']
+        fig4 = px.pie(grouped4, values='Outstanding (Dr-Cr)', names='Rating', title="By Rating")
         st.plotly_chart(fig4, use_container_width=True)
 
     # Horizontal divider
