@@ -1,10 +1,9 @@
 import streamlit as st
 
-st.title("📊 PRESPL Dashboard")
+st.title("📊 BI Dashboard")
 
 st.write("""
-Welcome to the PRESPL dashboard!  
+Welcome to the new BI dashboard!  
 Use the sidebar to:
-- View interactive pie charts
-- Explore the uploaded Excel data in table form
+- View interactive pie charts and apply filters
 """)

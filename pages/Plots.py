@@ -29,9 +29,9 @@ if uploaded_file:
         st.plotly_chart(fig1, use_container_width=True)
 
     with col2:
-        st.subheader("🌍 DrTotal by Zone/Segment")
-        pie2_data = filtered_df.groupby('Zone/Segment')['DrTotal'].sum().reset_index()
-        fig2 = px.pie(pie2_data, values='DrTotal', names='Zone/Segment', title="By Zone/Segment")
+        st.subheader("🌍 DrTotal by Zone/Intercompany")
+        pie2_data = filtered_df.groupby('Zone/Intercompany')['DrTotal'].sum().reset_index()
+        fig2 = px.pie(pie2_data, values='DrTotal', names='Zone/Intercompany', title="By Zone/Intercompany")
         st.plotly_chart(fig2, use_container_width=True)
 
     # Horizontal divider
