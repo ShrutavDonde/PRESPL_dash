@@ -18,7 +18,7 @@ if uploaded_file:
     
     filtered_df = df.copy()
     if zones:
-        filtered_df = filtered_df[filtered_df["Zone/Segment"].isin(zones)]
+        filtered_df = filtered_df[filtered_df["Zone/Intercompany"].isin(zones)]
     if verticals:
         filtered_df = filtered_df[filtered_df["Business Vertical"].isin(verticals)]
     if locations:
