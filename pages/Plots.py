@@ -9,6 +9,7 @@ uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx"])
 
 if uploaded_file:
     df = pd.read_excel(uploaded_file)
+    df = df.fillna(0)
 
     st.sidebar.header("Filter Options")
 
@@ -34,25 +35,25 @@ if uploaded_file:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("🌍 Outstanding (Dr-Cr) by Zone")
+        st.subheader("Outstanding (Dr-Cr) by Zone")
         grouped3 = filtered_df.groupby('Zone/Intercompany')['Outstanding (Dr-Cr)'].sum().reset_index()
-        fig3 = px.pie(grouped3, values='Outstanding (Dr-Cr)', names='Zone/Intercompany', title="By Zone/Intercompany")
+        fig3 = px.pie(grouped3, values='Outstanding (Dr-Cr)', names='Zone/Intercompany')
         st.plotly_chart(fig3, use_container_width=True)
         
-        st.subheader("📍 Outstanding (Dr-Cr) by Location")
+        st.subheader("Outstanding (Dr-Cr) by Location")
         grouped2 = filtered_df.groupby('Location')['Outstanding (Dr-Cr)'].sum().reset_index()
-        fig2 = px.pie(grouped2, values='Outstanding (Dr-Cr)', names='Location', title="By Location")
+        fig2 = px.pie(grouped2, values='Outstanding (Dr-Cr)', names='Location')
         st.plotly_chart(fig2, use_container_width=True)
 
     with col2:
-        st.subheader("💼 Outstanding (Dr-Cr) by Business Vertical")
+        st.subheader("Outstanding (Dr-Cr) by Business Vertical")
         grouped1 = filtered_df.groupby('Business Vertical')['Outstanding (Dr-Cr)'].sum().reset_index()
-        fig1 = px.pie(grouped1, values='Outstanding (Dr-Cr)', names='Business Vertical', title="By Business Vertical")
+        fig1 = px.pie(grouped1, values='Outstanding (Dr-Cr)', names='Business Vertical')
         st.plotly_chart(fig1, use_container_width=True)
 
-        st.subheader("⭐ Outstanding (Dr-Cr) by Rating")
+        st.subheader("Outstanding (Dr-Cr) by Rating")
         grouped4 = filtered_df.groupby('Rating')['Outstanding (Dr-Cr)'].sum().reset_index()
-        fig4 = px.pie(grouped4, values='Outstanding (Dr-Cr)', names='Rating', title="By Rating")
+        fig4 = px.pie(grouped4, values='Outstanding (Dr-Cr)', names='Rating')
         st.plotly_chart(fig4, use_container_width=True)
 
     # Horizontal divider
